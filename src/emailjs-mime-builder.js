@@ -22,9 +22,9 @@
     'use strict';
 
     if (typeof define === 'function' && define.amd) {
-        define(['emailjs-mime-codec', 'emailjs-mime-types', 'punycode', 'emailjs-addressparser'], factory);
+        define(['emailjs-mime-codec', 'emailjs-mime-types', 'emailjs-punycode', 'emailjs-addressparser'], factory);
     } else if (typeof exports === 'object') {
-        module.exports = factory(require('emailjs-mime-codec'), require('emailjs-mime-types'), require('punycode'), require('emailjs-addressparser'));
+        module.exports = factory(require('emailjs-mime-codec'), require('emailjs-mime-types'), require('emailjs-punycode'), require('emailjs-addressparser'));
     } else {
         root['emailjs-mime-builder'] = factory(root['emailjs-mime-codec'], root['emailjs-mime-types'], root.punycode, root['emailjs-addressparser']);
     }
