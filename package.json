@@ -20,7 +20,7 @@
     "type": "git",
     "url": "git://github.com/emailjs/emailjs-mime-builder.git"
   },
-  "main": "dist/builder",
+  "main": "src/builder",
   "dependencies": {
     "emailjs-addressparser": "^2.0.2",
     "emailjs-mime-codec": "^2.0.8",

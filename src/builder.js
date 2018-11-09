@@ -405,7 +405,14 @@ export default class MimeNode {
           lines.push(quotedPrintableEncode(this.content))
           break
         case 'base64':
-          lines.push(base64Encode(this.content, typeof this.content === 'object' ? 'binary' : undefined))
+          var base64;
+          if (this.content && typeof this.content === 'string' && /^data:/.test(this.content)) {
+            base64 = this.content.split('base64,')[1] || '';
+            base64 = base64.trim().replace(new RegExp('.{76}', 'g'), '$&\r\n').trim();
+          } else {
+            base64 = base64Encode(this.content, typeof this.content === 'object' ? 'binary' : undefined);
+          }
+          lines.push(base64);
           break
         default:
           if (flowed) {
