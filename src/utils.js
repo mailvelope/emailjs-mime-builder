@@ -183,12 +183,12 @@ export function escapeHeaderArgument (value) {
  * @param {Object} structured Parsed header value
  * @return {String} joined header value
  */
-export function buildHeaderValue (structured) {
+export function buildHeaderValue (structured, contEncode = true) {
   var paramsArray = []
 
   Object.keys(structured.params || {}).forEach(param => {
     // filename might include unicode characters so it is a special case
-    if (param === 'filename') {
+    if (param === 'filename' && contEncode) {
       continuationEncode(param, structured.params[param], 50).forEach(function (encodedParam) {
         // continuation encoded strings are always escaped, so no need to use enclosing quotes
         // in fact using quotes might end up with invalid filenames in some clients

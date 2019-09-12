@@ -60,6 +60,8 @@ export default class MimeNode {
       }
     }
 
+    this.continuationEncode = options.continuationEncode !== undefined  ? options.continuationEncode : true
+
     /**
      * Immediate parent for this node (or undefined if not set)
      */
@@ -337,7 +339,7 @@ export default class MimeNode {
           if (this.filename) {
             structured.params.filename = this.filename
           }
-          value = buildHeaderValue(structured)
+          value = buildHeaderValue(structured, this.continuationEncode)
           break
         case 'Content-Type':
           structured = parseHeaderValue(value)
